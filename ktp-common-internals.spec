@@ -5,19 +5,19 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : ktp-common-internals
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/ktp-common-internals-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/ktp-common-internals-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/ktp-common-internals-18.08.0.tar.xz.sig
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/ktp-common-internals-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/ktp-common-internals-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/ktp-common-internals-18.12.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 LGPL-2.1
-Requires: ktp-common-internals-bin
-Requires: ktp-common-internals-lib
-Requires: ktp-common-internals-license
-Requires: ktp-common-internals-data
-Requires: ktp-common-internals-locales
+Requires: ktp-common-internals-bin = %{version}-%{release}
+Requires: ktp-common-internals-data = %{version}-%{release}
+Requires: ktp-common-internals-lib = %{version}-%{release}
+Requires: ktp-common-internals-license = %{version}-%{release}
+Requires: ktp-common-internals-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : doxygen
@@ -33,8 +33,8 @@ No detailed description available
 %package bin
 Summary: bin components for the ktp-common-internals package.
 Group: Binaries
-Requires: ktp-common-internals-data
-Requires: ktp-common-internals-license
+Requires: ktp-common-internals-data = %{version}-%{release}
+Requires: ktp-common-internals-license = %{version}-%{release}
 
 %description bin
 bin components for the ktp-common-internals package.
@@ -51,10 +51,10 @@ data components for the ktp-common-internals package.
 %package dev
 Summary: dev components for the ktp-common-internals package.
 Group: Development
-Requires: ktp-common-internals-lib
-Requires: ktp-common-internals-bin
-Requires: ktp-common-internals-data
-Provides: ktp-common-internals-devel
+Requires: ktp-common-internals-lib = %{version}-%{release}
+Requires: ktp-common-internals-bin = %{version}-%{release}
+Requires: ktp-common-internals-data = %{version}-%{release}
+Provides: ktp-common-internals-devel = %{version}-%{release}
 
 %description dev
 dev components for the ktp-common-internals package.
@@ -63,8 +63,8 @@ dev components for the ktp-common-internals package.
 %package lib
 Summary: lib components for the ktp-common-internals package.
 Group: Libraries
-Requires: ktp-common-internals-data
-Requires: ktp-common-internals-license
+Requires: ktp-common-internals-data = %{version}-%{release}
+Requires: ktp-common-internals-license = %{version}-%{release}
 
 %description lib
 lib components for the ktp-common-internals package.
@@ -87,27 +87,27 @@ locales components for the ktp-common-internals package.
 
 
 %prep
-%setup -q -n ktp-common-internals-18.08.0
+%setup -q -n ktp-common-internals-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535324547
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549906635
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535324547
+export SOURCE_DATE_EPOCH=1549906635
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/ktp-common-internals
-cp COPYING %{buildroot}/usr/share/doc/ktp-common-internals/COPYING
-cp COPYING.GPLv2 %{buildroot}/usr/share/doc/ktp-common-internals/COPYING.GPLv2
-cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/doc/ktp-common-internals/cmake_modules_COPYING-CMAKE-SCRIPTS
+mkdir -p %{buildroot}/usr/share/package-licenses/ktp-common-internals
+cp COPYING %{buildroot}/usr/share/package-licenses/ktp-common-internals/COPYING
+cp COPYING.GPLv2 %{buildroot}/usr/share/package-licenses/ktp-common-internals/COPYING.GPLv2
+cp cmake/modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/ktp-common-internals/cmake_modules_COPYING-CMAKE-SCRIPTS
 pushd clr-build
 %make_install
 popd
@@ -257,15 +257,15 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libKTpCommonInternals.so.18.08.0
+/usr/lib64/libKTpCommonInternals.so.18.12.2
 /usr/lib64/libKTpCommonInternals.so.9
-/usr/lib64/libKTpLogger.so.18.08.0
+/usr/lib64/libKTpLogger.so.18.12.2
 /usr/lib64/libKTpLogger.so.9
-/usr/lib64/libKTpModels.so.18.08.0
+/usr/lib64/libKTpModels.so.18.12.2
 /usr/lib64/libKTpModels.so.9
-/usr/lib64/libKTpOTR.so.18.08.0
+/usr/lib64/libKTpOTR.so.18.12.2
 /usr/lib64/libKTpOTR.so.9
-/usr/lib64/libKTpWidgets.so.18.08.0
+/usr/lib64/libKTpWidgets.so.18.12.2
 /usr/lib64/libKTpWidgets.so.9
 /usr/lib64/qt5/plugins/kpeople/actions/ktp_kpeople_plugin.so
 /usr/lib64/qt5/plugins/kpeople/datasource/im_persons_data_source_plugin.so
@@ -275,10 +275,10 @@ popd
 /usr/lib64/qt5/qml/org/kde/telepathy/qmldir
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/ktp-common-internals/COPYING
-/usr/share/doc/ktp-common-internals/COPYING.GPLv2
-/usr/share/doc/ktp-common-internals/cmake_modules_COPYING-CMAKE-SCRIPTS
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/ktp-common-internals/COPYING
+/usr/share/package-licenses/ktp-common-internals/COPYING.GPLv2
+/usr/share/package-licenses/ktp-common-internals/cmake_modules_COPYING-CMAKE-SCRIPTS
 
 %files locales -f ktp-debugger.lang -f ktp-common-internals.lang
 %defattr(-,root,root,-)
