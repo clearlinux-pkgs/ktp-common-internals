@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : ktp-common-internals
-Version  : 18.12.2
-Release  : 3
-URL      : https://download.kde.org/stable/applications/18.12.2/src/ktp-common-internals-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/ktp-common-internals-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/ktp-common-internals-18.12.2.tar.xz.sig
+Version  : 18.12.3
+Release  : 4
+URL      : https://download.kde.org/stable/applications/18.12.3/src/ktp-common-internals-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/ktp-common-internals-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/ktp-common-internals-18.12.3.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause GPL-2.0 LGPL-2.1
@@ -87,22 +87,23 @@ locales components for the ktp-common-internals package.
 
 
 %prep
-%setup -q -n ktp-common-internals-18.12.2
+%setup -q -n ktp-common-internals-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549906635
+export SOURCE_DATE_EPOCH=1552008383
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549906635
+export SOURCE_DATE_EPOCH=1552008383
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/ktp-common-internals
 cp COPYING %{buildroot}/usr/share/package-licenses/ktp-common-internals/COPYING
@@ -257,15 +258,15 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libKTpCommonInternals.so.18.12.2
+/usr/lib64/libKTpCommonInternals.so.18.12.3
 /usr/lib64/libKTpCommonInternals.so.9
-/usr/lib64/libKTpLogger.so.18.12.2
+/usr/lib64/libKTpLogger.so.18.12.3
 /usr/lib64/libKTpLogger.so.9
-/usr/lib64/libKTpModels.so.18.12.2
+/usr/lib64/libKTpModels.so.18.12.3
 /usr/lib64/libKTpModels.so.9
-/usr/lib64/libKTpOTR.so.18.12.2
+/usr/lib64/libKTpOTR.so.18.12.3
 /usr/lib64/libKTpOTR.so.9
-/usr/lib64/libKTpWidgets.so.18.12.2
+/usr/lib64/libKTpWidgets.so.18.12.3
 /usr/lib64/libKTpWidgets.so.9
 /usr/lib64/qt5/plugins/kpeople/actions/ktp_kpeople_plugin.so
 /usr/lib64/qt5/plugins/kpeople/datasource/im_persons_data_source_plugin.so
